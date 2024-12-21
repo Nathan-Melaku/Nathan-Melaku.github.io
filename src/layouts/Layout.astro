@@ -1,6 +1,7 @@
 ---
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
+import { blog } from "@constants";
 
 type Props = {
   title: string;
@@ -22,6 +23,12 @@ const { title, description } = Astro.props;
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <title>{title}</title>
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={blog.title}
+      href={new URL("feed.xml", Astro.site)}
+    />
   </head>
   <body
     class="flex flex-col justify-between h-screen bg-white-500 text-black-500

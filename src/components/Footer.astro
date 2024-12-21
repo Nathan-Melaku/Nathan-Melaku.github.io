@@ -1,11 +1,17 @@
 ---
-const year = (new Date()).getFullYear();
+const year = new Date().getFullYear();
 ---
 
 <footer class="py-5 drop-shadow-md z-50">
-  <div class=" mx-auto max-w-screen-sm">
+  <div class="mx-auto max-w-screen-sm flex justify-between">
     <div class="flex flex-wrap justify-between">
       © {year} | natefu.xyz
+    </div>
+    <div class="flex justify-start items-center gap-2">
+      <div>Subscribe</div>
+      <a href="/feed.xml">
+        <img class="w-4 h-4" src="/rss.png" alt="Subscribe to Nate's Blog" />
+      </a>
     </div>
   </div>
 </footer>
