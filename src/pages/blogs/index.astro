@@ -8,20 +8,22 @@ import type { CollectionEntry } from "astro:content";
 const { title, description } = blog;
 
 const blogs = await getBlogs();
+type BlogWithYear = {
+  [year: string] : CollectionEntry<"blog">[];
+}
 
-let blogMap = new Map<number,CollectionEntry<"blog">[]>()
 
-blogs.forEach((b) => {
-  const year = b.data.date.getFullYear();
-  let blogsInYear = blogMap.get(year);
-  if (blogsInYear) {
-    blogsInYear.push(b);
-  } else {
-    blogsInYear = [b];
+const posts = blogs.reduce((bwy: BlogWithYear, post) => {
+  const year = post.data.date.getFullYear().toString();
+  if (!bwy[year]) {
+    bwy[year] = [];
   }
 
-  blogMap.set(year, blogsInYear);
-});
+  bwy[year].push(post);
+  return bwy;
+}, {});
+
+const years = Object.keys(posts).sort((a, b) => parseInt(b) - parseInt(a));
 
 const uniquTags = [
   ...new Set(
@@ -39,10 +41,10 @@ const uniquTags = [
   <div class="flex justify-between gap-5">
     <div class="w-full">
       {
-		blogMap.entries().map((entry) => (
-		  <div class="font-bold my-4">{entry[0]}</div>
+		years.map((year) => (
+		  <div class="font-bold my-4">{year}</div>
 		  <div class="flex flex-col gap-3">
-		    {entry[1].map((bl) => (
+		    {posts[year]?.map((bl) => (
 		      <Card
 		        title={bl.data.title}
 		        body={bl.data.description}
