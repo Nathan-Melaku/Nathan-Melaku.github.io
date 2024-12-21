@@ -22,22 +22,47 @@ blogs.forEach((b) => {
 
   blogMap.set(year, blogsInYear);
 });
+
+const uniquTags = [
+  ...new Set(
+    blogs
+      .filter((p) => p.data.tags)
+      .map((p) => p.data.tags)
+      .flat(),
+  ),
+];
+
 ---
 
 <Layout title={title} description={description} >
   <h2 class="font-bold">Blogs</h2>
-  {
-	blogMap.entries().map((entry) => (
-	  <div class="font-bold my-4">{entry[0]}</div>
-	  <div class="flex flex-col gap-3">
-	    {entry[1].map((bl) => (
-	      <Card
-	        title={bl.data.title}
-	        body={bl.data.description}
-	        href={`/blogs/${bl.slug}`}
-	      />
-	  ))}
-	  </div>
-	))
-  }
+  <div class="flex justify-between gap-5">
+    <div class="w-full">
+      {
+		blogMap.entries().map((entry) => (
+		  <div class="font-bold my-4">{entry[0]}</div>
+		  <div class="flex flex-col gap-3">
+		    {entry[1].map((bl) => (
+		      <Card
+		        title={bl.data.title}
+		        body={bl.data.description}
+		        href={`/blogs/${bl.slug}`}
+		      />
+		  ))}
+		  </div>
+		))
+	  }
+    </div>
+    <div class="w-20 flex flex-col">
+      <h2 class="font-bold my-4">Tags</h2>
+      {
+        uniquTags.map((tag) => (
+          <div class="dark:bg-black-300 bg-white-400 rounded text-xs px-2.5 py-0.5 me-1 hover:underline mb-2 text-center">
+            <a href={`/blogs/tags/${tag}`}>{tag}</a>
+          </div>
+        ))
+      }
+    </div>
+</div>
+
 </Layout>
