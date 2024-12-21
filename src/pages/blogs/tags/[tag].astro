@@ -1,0 +1,50 @@
+---
+import type { GetStaticPaths } from "astro";
+import Layout from "@layouts/Layout.astro";
+import Card from "@components/Card.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+export const getStaticPaths = (async () => {
+  const posts = (await getCollection("blog"))
+    .filter((post) => !post.data.draft)
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+  const uniquTags = [
+    ...new Set(
+      posts
+        .filter((p) => p.data.tags)
+        .map((p) => p.data.tags)
+        .flat(),
+    ),
+  ];
+
+  return uniquTags.map((tag) => {
+    const filterdPosts = posts.filter((post) =>
+      post.data.tags?.includes(tag ?? ""),
+    );
+    return {
+      params: { tag: tag },
+      props: { posts: filterdPosts, tag: tag },
+    };
+  });
+}) satisfies GetStaticPaths;
+
+type Props = { posts: CollectionEntry<"blog">[], tag: string | undefined};
+const props = Astro.props;
+---
+
+<Layout title="" description="">
+  <h1 class="font-bold text-lg mb-4">{props.tag}</h1>
+  <div class="flex flex-col gap-3">
+    {
+      props.posts.map((post) => (
+        <Card
+          title={post.data.title}
+          body={post.data.description}
+          href={`/blogs/${post.slug}`}
+        />
+      ))
+    }
+  </div>
+</Layout>

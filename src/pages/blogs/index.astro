@@ -1,0 +1,43 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Card from "@components/Card.astro";
+import { blog } from "@constants";
+import { getBlogs } from "@utils";
+import type { CollectionEntry } from "astro:content";
+
+const { title, description } = blog;
+
+const blogs = await getBlogs();
+
+let blogMap = new Map<number,CollectionEntry<"blog">[]>()
+
+blogs.forEach((b) => {
+  const year = b.data.date.getFullYear();
+  let blogsInYear = blogMap.get(year);
+  if (blogsInYear) {
+    blogsInYear.push(b);
+  } else {
+    blogsInYear = [b];
+  }
+
+  blogMap.set(year, blogsInYear);
+});
+---
+
+<Layout title={title} description={description} >
+  <h2 class="font-bold">Blogs</h2>
+  {
+	blogMap.entries().map((entry) => (
+	  <div class="font-bold my-4">{entry[0]}</div>
+	  <div class="flex flex-col gap-3">
+	    {entry[1].map((bl) => (
+	      <Card
+	        title={bl.data.title}
+	        body={bl.data.description}
+	        href={`/blogs/${bl.slug}`}
+	      />
+	  ))}
+	  </div>
+	))
+  }
+</Layout>

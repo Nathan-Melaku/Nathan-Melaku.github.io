@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Markdown styles for blog post*/
+
+article table {
+  @apply w-full table-auto text-left my-4 font-medium leading-7;
+}
+
+article thead {
+  @apply border-black-500 dark:border-slate-600 border-b;
+}
+article tr {
+  @apply border-black-100 dark:border-slate-700 border-b;
+}
+
+.astro-code {
+  @apply rounded-lg p-4;
+}
+
+article tr:last-child {
+  @apply border-b-0;
+}
+
+article p {
+  @apply my-4;
+}
+
+article h1 {
+  @apply my-4 font-bold text-xl ;
+}
+
+article h2 {
+  @apply my-4 font-bold text-lg;
+}
+
+article h3 {
+  @apply my-4 font-bold;
+}
+
+article code {
+  @apply dark:text-pink-800 text-orange-700;
+}

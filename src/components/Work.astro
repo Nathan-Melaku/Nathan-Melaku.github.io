@@ -1,0 +1,30 @@
+---
+import { getWorkExperience } from "@utils";
+
+interface Props {
+  top: number | "all"
+}
+
+const { top }  = Astro.props;
+let work = await getWorkExperience();
+if (typeof top === "number") {
+  work = work.slice(0, top)
+}
+---
+
+<div>
+{
+work.map(entry => (
+  <h4 class="text-black-300 dark:text-white-300">
+    {entry.data.startDate.toLocaleDateString('en-us', {year: "numeric", month: "short"})}
+    - {entry.data.endDate.toLocaleString('en-us', {year: "numeric", month: "short"})}
+  </h4>
+  <h2 class="font-bold">{entry.data.company}</h2>
+  <div class="text-black-300 dark:text-white-300 mb-5">{entry.data.role}</div>
+    
+  <article class="mb-5 line-clamp-4">
+    <entry.Content />
+  </article>
+))
+}
+</div>

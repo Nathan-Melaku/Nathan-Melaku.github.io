@@ -1,0 +1,12 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { projects } from "@constants";
+import Project from "@components/Project.astro";
+
+const { title, description } = projects;
+---
+
+<Layout title={title} description={description}>
+  <h2 class="mb-8 font-bold">Projects</h2>
+  <Project top="all" />
+</Layout>

@@ -1,0 +1,23 @@
+---
+import { getProjects } from "@utils";
+import Card from "./Card.astro";
+
+interface Props {
+  top: number | "all";
+}
+
+const {top} = Astro.props;
+let projects = await getProjects();
+if (typeof top === "number") {
+  projects = projects.slice(0, top);
+}
+
+---
+
+<div class="flex flex-col gap-3">
+  {
+    projects.map((entry) => (
+      <Card title={entry.data.title} body={entry.data.description} href={`/projects/${entry.slug}`} />
+    ))
+  }
+</div>

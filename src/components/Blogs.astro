@@ -1,0 +1,28 @@
+---
+import Card from "./Card.astro";
+import { getBlogs } from "@utils";
+
+interface Props {
+  top: number | "all"
+}
+const {top} = Astro.props;
+
+let blogs = await getBlogs();
+
+if ( typeof top === "number"){
+  blogs = blogs.slice(0, top);
+}
+
+---
+
+<div class="flex flex-col gap-3">
+  {
+    blogs.map((blog) => (
+      <Card
+        title={blog.data.title}
+        body={blog.data.description}
+        href={`/blogs/${blog.slug}`}
+      />
+    ))
+  }
+</div>
