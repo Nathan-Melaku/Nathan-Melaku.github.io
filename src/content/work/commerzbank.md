@@ -5,10 +5,11 @@ startDate: "12/01/2022"
 endDate: "Current"
 ---
 
-In elementum luctus purus sit amet sodales. Phasellus tempor magna 
-eget ante euismod, sit amet pharetra era lacinia. 
-Vivamus molestie non justo vitae laoreet. Vivamus at eros vel sapien 
-sollicitudin posuere. Duis ut diam risus. Vivamus odio mi,
-mollis a dolor at, auctor sollicitudin est. Suspendisse potenti. Maecenas
-accumsan ligula a orci bibendum tempus. Integer at gravida lorem. 
-Nullam eu odio nec sapien faucibus accumsan id in mauris.
+I'm currently enjoying my time at Commerzbank,
+where the calm and collected work environment allows me to thrive.
+I've had the opportunity to collaborate with many skilled professionals
+and contribute to projects used by hundreds of thousands of people.
+
+I have used the following tools and technologies while working here.
+Spring, React, Jakarta ee, JSF, FirstSpirit, Docker, Openshift,
+Dynatrace, Tomcat, WebSphere.
