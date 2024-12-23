@@ -42,3 +42,11 @@ article h3 {
 article code {
   @apply dark:text-pink-800 text-orange-700;
 }
+
+article ul {
+  @apply max-w-md space-y-1 list-disc list-inside;
+}
+
+article a {
+  @apply underline;
+}

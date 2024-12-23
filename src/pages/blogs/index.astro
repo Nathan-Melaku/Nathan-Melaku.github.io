@@ -18,7 +18,6 @@ const posts = blogs.reduce((bwy: BlogWithYear, post) => {
   if (!bwy[year]) {
     bwy[year] = [];
   }
-
   bwy[year].push(post);
   return bwy;
 }, {});

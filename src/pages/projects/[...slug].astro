@@ -23,6 +23,10 @@ const { title, description } = projects;
 ---
 
 <Layout title={title} description={description}>
+  <h1 class="mb-2 font-bold text-xl">{project.data.title}</h1>
+  <div>
+    <a class="underline" href={project.data.repoURL}>Repo Url</a>
+  </div>
   <article class="article">
     <Content />
   </article>
