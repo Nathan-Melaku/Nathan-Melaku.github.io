@@ -15,7 +15,7 @@ const { title, description } = home;
       <h1 class="text-lg font-bold mb-8">Hi, I am Nathan</h1>
       <p class="leading-6 tracking-wide text-left">
         I'm a software engineer with nearly a decade of experience, mainly
-        working working with java, but enjoy tinkering around other languages. I
+        working with java, but enjoy tinkering around other languages. I
         love Emacs, Linux, and custom window managers, and enjoy building tools,
         solving problems, and exploring new tech. Always curious and up for a
         challenge!
@@ -35,19 +35,6 @@ const { title, description } = home;
     </div>
     <div>
       <div class="flex justify-between mb-8">
-        <h1 class="text-lg font-bold">Work experience</h1>
-        <a
-          class="underline dark:text-white-400 text-black-100 dark:hover:text-white-500 hover:text-black-500 hover:font-medium"
-          href="/work"
-        >
-          See all experience
-        </a>
-      </div>
-      <Work top={2} />
-    </div>
-
-    <div>
-      <div class="flex justify-between mb-8">
         <h1 class="text-lg font-bold">Latest projects</h1>
         <a
           class="underline dark:text-white-400 text-black-100 dark:hover:text-white-500 hover:text-black-500 hover:font-medium"
@@ -58,7 +45,18 @@ const { title, description } = home;
       </div>
       <Project top={2} />
     </div>
-
+    <div>
+      <div class="flex justify-between mb-8">
+        <h1 class="text-lg font-bold">Work experience</h1>
+        <a
+          class="underline dark:text-white-400 text-black-100 dark:hover:text-white-500 hover:text-black-500 hover:font-medium"
+          href="/work"
+        >
+          See all experience
+        </a>
+      </div>
+      <Work top={2} />
+    </div>
     <Contact />
   </div>
 </Layout>
